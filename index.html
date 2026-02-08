@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <style>
+    @font-face {
+      font-family: 'Favorit Mono';
+      src: url('FavoritMono-Regular.woff2') format('woff2');
+    }
+
+    :root {
+      --green: #2b9f5b;
+      --text: #666;
+      --font-size: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Favorit Mono', monospace;
+      font-size: var(--font-size);
+      color: var(--text);
+      background: #fff;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 200px 1fr auto;
+      gap: 40px;
+      padding: 22px 32px 32px;
+      align-items: baseline;
+      margin-bottom: 40px;
+    }
+
+    .name {
+      color: var(--green);
+      letter-spacing: 0.05em;
+    }
+
+    .intro {
+      max-width: 700px;
+      line-height: 1.6;
+    }
+
+    .more-info {
+      border: none;
+      background: none;
+      font-family: inherit;
+      font-size: inherit;
+      color: var(--text);
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .more-info:hover {
+      text-decoration: underline;
+      cursor: url("cursor-arrow.png") 16 16, pointer;
+    }
+
+    .divider {
+      height: 1px;
+      background: #999;
+      margin: 0 32px;
+    }
+
+    section {
+      padding: 12px 32px 0;
+    }
+
+    .section-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      padding-bottom: 9vh;
+      border-bottom: 1px solid #999;
+    }
+
+    .image-slider {
+      position: relative;
+      width: 90%;
+    }
+
+    .image-frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #f3f3f3;
+      border: 1px solid #ddd;
+    }
+
+    .slider-images img,
+    .slider-images video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .slider-images img.active,
+    .slider-images video.active {
+      opacity: 1;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: rgba(0,0,0,0.26);
+      color: #fff;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 22px;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .arrow.left { left: 10px; }
+    .arrow.right { right: 10px; }
+
+    .image-frame:hover .arrow {
+      display: flex;
+    }
+
+    /* SLIDE COUNT */
+    .slide-count {
+      margin-top: 6px;
+      text-align: right;
+      font-size: var(--font-size);
+      letter-spacing: 0.05em;
+    }
+
+    .text-block h2,
+    .text-block em,
+    .text-block p {
+      font-size: var(--font-size);
+      margin: 0;
+    }
+
+    .text-block h2 {
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+      font-weight: normal;
+      color: var(--green);
+    }
+
+    .text-block em {
+      display: block;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .text-block p {
+      line-height: 1.6;
+      padding-right: 8px;
+      hyphens: auto;
+      word-break: break-word;
+    }
+
+    .special:hover {
+      cursor: url("cursor-arrow.png") 16 16, pointer;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 12px;
+      }
+
+      .section-content {
+        grid-template-columns: 1fr;
+      }
+
+      .more-info {
+        margin-top: 24px;
+      }
+
+      .image-slider {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .arrow {
+        display: none !important;
+      }
+
+      .text-block h2,
+      .text-block em {
+        letter-spacing: -0.05em;
+      }
+
+      .section-content {
+        padding-bottom: 4vh;
+      }
+
+      :root {
+        --font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="name">AVIV KESTIN</div>
+  <div class="intro">
+    Designer from Geneva who loves bookmaking, creating visual identities, and experimenting with type. He also enjoys making engaging interactions through code. He is currently based in New York&nbsp;City.
+  </div>
+  <a href="moreinfo.html" class="more-info">More Info</a>
+
+</header>
+
+<div class="divider"></div>
+
+<!-- SECTION TEMPLATE PATTERN -->
+<!-- image-frame wraps slider, slide-count sits below -->
+
+<!-- SECTION 1 -->
+<section>
+  <div class="section-content">
+    <div class="image-slider">
+      <div class="image-frame">
+        <div class="slider-images">
+          <video muted loop playsinline><source src="Comp 1_6.mp4"></video>
+          <img src="cover.png">
+        </div>
+        <button class="arrow left">&#10094;</button>
+        <button class="arrow right">&#10095;</button>
+      </div>
+      <div class="slide-count"></div>
+    </div>
+    <div class="text-block">
+      <h2>A PINCH OF GOLD AMONGST FIELDS OF RUST</h2>
+      <em>Layout, Typesetting, Photography, Bookmaking</em>
+      <p>Exploring my childhood obsession with cars that has all but faded, I chose junkyards in order to study themes of decay. Photographed in New York City.<br>7.5x10"</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 -->
+<section>
+  <div class="section-content">
+    <div class="image-slider">
+      <div class="image-frame">
+        <a href="https://aviv-kestin.github.io/goldrust/index.html" target="_blank">
+          <div class="slider-images special">
+            <video muted loop playsinline><source src="fry.mp4"></video>
+            <video muted loop playsinline><source src="vid1.mov"></video>
+            <video muted loop playsinline><source src="vid2.mov"></video>
+            <video muted loop playsinline><source src="vid3.mov"></video>
+            <video muted loop playsinline><source src="vid4.mov"></video>
+          </div>
+        </a>
+        <button class="arrow left">&#10094;</button>
+        <button class="arrow right">&#10095;</button>
+      </div>
+      <div class="slide-count"></div>
+    </div>
+    <div class="text-block">
+      <h2>A PINCH OF GOLD AMONGST FIELDS OF RUST WEB</h2>
+      <em>Web, Interaction</em>
+      <p>Serving as the digital component, this project further explores utilizing photography as a tool for worldbuilding and experimentation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 -->
+<section>
+  <div class="section-content">
+    <div class="image-slider">
+      <div class="image-frame">
+        <div class="slider-images">
+          <video muted loop playsinline><source src="try2.mp4"></video>
+        </div>
+      </div>
+      <div class="slide-count"></div>
+    </div>
+    <div class="text-block">
+      <h2>DISTANT HUES OF GREEN</h2>
+      <em>Photography, Typography, Risograph</em>
+      <p>Risograph printed booklet born out of my frustration towards the lack of accessible green spaces in New York City.<br>4.15x5.5"</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 -->
+<section>
+  <div class="section-content">
+    <div class="image-slider">
+      <div class="image-frame">
+        <div class="slider-images">
+          <img src="part-one.png" class="active">
+          <img src="part-two.png">
+          <img src="pt3newArtboard 1 copy.png">
+          <img src="pt4newArtboard 1 copy.png">
+          <img src="pt5newArtboard 1 copy.png">
+        </div>
+        <button class="arrow left">&#10094;</button>
+        <button class="arrow right">&#10095;</button>
+      </div>
+      <div class="slide-count"></div>
+    </div>
+    <div class="text-block">
+      <h2>9020</h2>
+      <em>Typesetting, Creative Direction, Illustration</em>
+      <p>Analyzing various facets of the fashion industry and its history, 9020 blends visual inspiration from Rococo and the fashion minimalism of the late '90s.<br>5x7.5"</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5 -->
+<section>
+  <div class="section-content" style="border-bottom:none;">
+    <div class="image-slider">
+      <div class="image-frame">
+        <div class="slider-images">
+          <img src="post.png" class="active">
+        </div>
+      </div>
+      <div class="slide-count"></div>
+    </div>
+    <div class="text-block">
+      <h2>WELCOME THE UNKNOWN</h2>
+      <em>Poster, Typography</em>
+      <p>Poster based on Herbie Hancock and Wayne Shorter’s manifesto, “An Open Letter to the Next Generation of Artists”.<br>24x36"</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.image-slider').forEach(slider => {
+    const slides = slider.querySelectorAll('img, video');
+    const left = slider.querySelector('.arrow.left');
+    const right = slider.querySelector('.arrow.right');
+    const counter = slider.querySelector('.slide-count');
+
+    let current = 0;
+
+    function updateCounter() {
+      counter.textContent = `${current + 1}/${slides.length}`;
+    }
+
+    function activateSlide(index) {
+      slides.forEach(slide => {
+        slide.classList.remove('active');
+        if (slide.tagName === 'VIDEO') {
+          slide.pause();
+          slide.currentTime = 0;
+        }
+      });
+
+      const active = slides[index];
+      active.classList.add('active');
+      if (active.tagName === 'VIDEO') active.play();
+
+      updateCounter();
+    }
+
+    activateSlide(current);
+
+    if (left && right && slides.length > 1) {
+      left.addEventListener('click', e => {
+        e.stopPropagation();
+        current = (current - 1 + slides.length) % slides.length;
+        activateSlide(current);
+      });
+
+      right.addEventListener('click', e => {
+        e.stopPropagation();
+        current = (current + 1) % slides.length;
+        activateSlide(current);
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

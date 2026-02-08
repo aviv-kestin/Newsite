@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>More Info</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <style>
+    @font-face {
+      font-family: 'Favorit Mono';
+      src: url('FavoritMono-Regular.woff2') format('woff2');
+    }
+
+    :root {
+      --green: #2b9f5b;
+      --text: #666;
+      --font-size: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Favorit Mono', monospace;
+      font-size: var(--font-size);
+      color: var(--text);
+      background: #fff;
+    }
+
+    a {
+      color: var(--text);
+      text-decoration: underline;
+      font-size: inherit;
+    }
+
+    a:hover {
+    cursor: url("cursor-arrow.png") 16 16, pointer;
+
+    }
+
+    /* HEADER */
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      padding: 22px 32px 0;
+    }
+
+    .section-title {
+      color: var(--green);
+      letter-spacing: 0.05em;
+      margin: 0;
+    }
+
+    .nav-link {
+      color: var(--text);
+      letter-spacing: 0.05em;
+      text-decoration: underline;
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+      cursor: url("cursor-arrow.png") 16 16, pointer;
+    }
+
+    /* CONTENT */
+    main {
+      padding: 0 32px;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.6;
+      max-width: 920px; /* widened to prevent awkward wraps */
+    }
+
+    .indent {
+      text-indent: 2em;
+    }
+
+    .section-block {
+      margin-bottom: 20px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 500px) {
+      :root {
+        --font-size: 12px;
+      }
+
+      p {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <p class="section-title">SKILLS</p>
+  <a href="index.html" class="nav-link">Home</a>
+</header>
+
+<main>
+
+  <div class="section-block">
+    <p class="indent">Adobe Creative Suite (Illustrator, Photoshop, InDesign, After Effects…)</p>
+    <p class="indent">HTML, CSS, JavaScript</p>
+    <p class="indent">Figma</p>
+    <p class="indent">Risograph</p>
+  </div>
+
+  <div class="section-block">
+    <p class="section-title">EDUCATION</p>
+    <p class="indent">Parsons School of Design, Communication Design</p>
+  </div>
+
+  <div class="section-block">
+    <p class="section-title">CONTACT</p>
+    <p class="indent">avivlevkestin@gmail.com</p>
+    <p class="indent">
+      <a href="https://www.instagram.com/_avivkestin_/" target="_blank">Instagram</a>
+    </p>
+    <p class="indent">
+      <a href="https://www.linkedin.com/in/aviv-kestin/" target="_blank">LinkedIn</a>
+    </p>
+  </div>
+
+</main>
+
+</body>
+</html>
