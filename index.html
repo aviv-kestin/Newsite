@@ -344,51 +344,86 @@
 </section>
 
 <script>
-  document.querySelectorAll('.image-slider').forEach(slider => {
-    const slides = slider.querySelectorAll('img, video');
-    const left = slider.querySelector('.arrow.left');
-    const right = slider.querySelector('.arrow.right');
-    const counter = slider.querySelector('.slide-count');
+document.querySelectorAll('.image-slider').forEach(slider => {
+  const slides = slider.querySelectorAll('img, video');
+  const left = slider.querySelector('.arrow.left');
+  const right = slider.querySelector('.arrow.right');
+  const counter = slider.querySelector('.slide-count');
 
-    let current = 0;
+  let current = 0;
 
-    function updateCounter() {
-      counter.textContent = `${current + 1}/${slides.length}`;
-    }
+  function updateCounter() {
+    counter.textContent = `${current + 1}/${slides.length}`;
+  }
 
-    function activateSlide(index) {
-      slides.forEach(slide => {
-        slide.classList.remove('active');
-        if (slide.tagName === 'VIDEO') {
-          slide.pause();
-          slide.currentTime = 0;
-        }
-      });
+  function activateSlide(index) {
+    slides.forEach(slide => {
+      slide.classList.remove('active');
+      if (slide.tagName === 'VIDEO') {
+        slide.pause();
+        slide.currentTime = 0;
+      }
+    });
 
-      const active = slides[index];
-      active.classList.add('active');
-      if (active.tagName === 'VIDEO') active.play();
+    const active = slides[index];
+    active.classList.add('active');
+    if (active.tagName === 'VIDEO') active.play();
 
-      updateCounter();
-    }
+    updateCounter();
+  }
 
-    activateSlide(current);
+  activateSlide(current);
 
-    if (left && right && slides.length > 1) {
-      left.addEventListener('click', e => {
-        e.stopPropagation();
-        current = (current - 1 + slides.length) % slides.length;
-        activateSlide(current);
-      });
+  // Arrow navigation for desktop / larger screens
+  if (left && right && slides.length > 1) {
+    left.addEventListener('click', e => {
+      e.stopPropagation();
+      current = (current - 1 + slides.length) % slides.length;
+      activateSlide(current);
+    });
 
-      right.addEventListener('click', e => {
-        e.stopPropagation();
-        current = (current + 1) % slides.length;
-        activateSlide(current);
-      });
-    }
+    right.addEventListener('click', e => {
+      e.stopPropagation();
+      current = (current + 1) % slides.length;
+      activateSlide(current);
+    });
+  }
+
+  // ====== MOBILE SWIPE ======
+  let startX = 0;
+  let endX = 0;
+
+  slider.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
   });
+
+  slider.addEventListener('touchmove', e => {
+    endX = e.touches[0].clientX;
+  });
+
+  slider.addEventListener('touchend', e => {
+    const threshold = 50; // minimum px to count as swipe
+    const diff = endX - startX;
+
+    if (Math.abs(diff) > threshold) {
+      if (diff < 0) {
+        // swipe left → next slide
+        current = (current + 1) % slides.length;
+      } else {
+        // swipe right → previous slide
+        current = (current - 1 + slides.length) % slides.length;
+      }
+      activateSlide(current);
+    }
+
+    // reset
+    startX = 0;
+    endX = 0;
+  });
+});
 </script>
+
 
 </body>
 </html>
+
